@@ -1,0 +1,94 @@
+plugins {
+    id 'application'
+
+    // Spring
+    id 'org.springframework.boot' version '2.3.5.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+}
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
+group = 'carbonzero'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+    // Spring Web
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // Spring Validation
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // HATEOAS
+    implementation 'org.springframework.boot:spring-boot-starter-hateoas'
+
+    // Spring Data JPA
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Spring Developer Tools
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Spring Boot Test
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    // Use JUnit Jupiter API for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
+
+    // AssertJ
+    testImplementation 'org.assertj:assertj-core:3.18.1'
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+
+    // MariaDB
+    implementation group: 'org.mariadb.jdbc', name: 'mariadb-java-client', version: '2.7.3'
+
+    // H2
+    runtimeOnly 'com.h2database:h2'
+    testImplementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+
+    // DozerMapper
+    implementation 'com.github.dozermapper:dozer-core:6.4.0'
+
+    // Jackson for JSON.
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.11.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.11.3'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    // Swagger
+    implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+}
+
+application {
+	mainClass = 'com.carbonzero.App'
+}
+
+test {
+	useJUnitPlatform()
+}
+
+bootBuildImage {
+    builder = 'paketobuildpacks/builder:tiny'
+    environment = ['BP_NATIVE_IMAGE': 'true']
+}
+
+
+bootJar{
+    archivesBaseName = 'carbon-zero-api'
+    archiveFileName = 'carbon-zero-api-staging.jar'
+    archiveVersion = "0.0.0"
+}

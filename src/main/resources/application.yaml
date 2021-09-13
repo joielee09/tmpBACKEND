@@ -1,0 +1,14 @@
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  application:
+    name: carbon-zero
+  server:
+    port: 8080
+    shutdown: graceful
+  servlet:
+    charset: UTF-8
+    enable: true
+    force: ture
+  profiles:
+    active: prod

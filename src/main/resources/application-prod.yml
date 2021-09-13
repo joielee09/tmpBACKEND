@@ -1,0 +1,21 @@
+spring:
+  profiles: prod
+
+  loggin:
+    level:
+      org.springframework.web.error
+
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+    url: jdbc:mariadb://carbon-nono.cdspom5j0apx.ap-northeast-2.rds.amazonaws.com:3306/CARBON_NONO
+    username: admin
+    password: adminadmin
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        default_schema: CARBON_NONO

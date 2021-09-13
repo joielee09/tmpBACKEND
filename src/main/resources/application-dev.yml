@@ -1,0 +1,22 @@
+spring:
+  profiles: dev
+
+  loggin:
+    level:
+      org.springframework.web.info
+
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+    url: jdbc:mariadb://carbon-zero-dev.cdspom5j0apx.ap-northeast-2.rds.amazonaws.com:3306/carbon_zero_dev
+    username: carbon_zero_dev
+    password: carbon_zero_dev
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        default_schema: public
+    show-sql: true
